@@ -99,12 +99,12 @@ def update_timer():
 # 문제 출제 함수
 def generate_problem():
     global goal_ingredients
+    
     # 재료를 랜덤으로 1~5개 선택 (중복 가능)
     num_ingredients = random.randint(1, 5)
     goal_ingredients = [random.choice(ingredients) for _ in range(num_ingredients)]
     
-    # 섞기
-    random.shuffle(goal_ingredients)
+    random.shuffle(goal_ingredients)  # 섞기
     
     # 섞인 재료의 이미지 파일을 오른쪽 화면에 표시
     images = []
