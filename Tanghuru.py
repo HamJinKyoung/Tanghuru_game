@@ -59,9 +59,9 @@ score = 0
 score_label = tk.Label(root, text="현재 점수: 0", bg="LightSteelBlue", font=("교보 손글씨 2019", 16))
 score_label.place(relx=0.5, rely=0.25, anchor="center")
 
-# 목숨 레이블
+# 기회 레이블
 lives = 3
-lives_label = tk.Label(root, text="남은 목숨: 3", bg="LightSteelBlue", font=("교보 손글씨 2019", 16))
+lives_label = tk.Label(root, text="남은 기회: 3", bg="LightSteelBlue", font=("교보 손글씨 2019", 16))
 lives_label.place(relx=0.5, rely=0.3, anchor="center")
 
 
@@ -166,9 +166,9 @@ def make_tanghuru(ingredient):
             goal_ingredients = generate_problem()
     else:
         # 틀렸을 경우
-        # 목숨 차감
+        # 기회 차감
         lives -= 1
-        lives_label.config(text=f"남은 목숨: {lives}")
+        lives_label.config(text=f"남은 기회: {lives}")
 
         # "X" 표시
         result_display.config(text="X", fg="red")
@@ -179,7 +179,7 @@ def make_tanghuru(ingredient):
         for widget in current_tanghuru.winfo_children():
             widget.destroy()
 
-        # 목숨이 0이면 게임 오버
+        # 기회이 0이면 게임 오버
         if lives == 0:
             game_over()
         else:
@@ -224,7 +224,7 @@ def initialize_game():
     score_label.config(text=f"현재 점수: {score}")
     
     lives = 3
-    lives_label.config(text=f"남은 목숨: {lives}")
+    lives_label.config(text=f"남은 기회: {lives}")
     
     time_left = 60
     timer_label.config(text=f"남은 시간: {time_left}")
