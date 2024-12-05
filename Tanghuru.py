@@ -79,22 +79,27 @@ def load_image(image_path, width=50, height=50):  # 이미지 크기 조정
         return None
 
 game_running = True # 게임 상태 확인
+timer_id = None # 타이머 중복 방지
 
 # 타이머 업데이트 함수
 def update_timer():
-    global time_left
+    global time_left, timer_id
     if game_running and time_left > 0:
         time_left -= 1
-        
+
         # 남은 시간이 10초 이하일 경우 글씨 색을 빨간색으로 변경
         if time_left <= 10:
             timer_label.config(text=f"남은 시간: {time_left}", fg="red")
         else:
             timer_label.config(text=f"남은 시간: {time_left}", fg="black")
-        
-        root.after(1000, update_timer)  # 1초 후에 다시 호출
+
+        # 기존 예약 작업 취소 후 새 작업 예약
+        if timer_id is not None:
+            root.after_cancel(timer_id)  # 기존 작업 취소
+        timer_id = root.after(1000, update_timer)  # 새 작업 예약
     else:
         game_over()  # 시간이 다 되면 게임 종료
+        timer_id = None  # 타이머 ID 초기화
 
 # 문제 출제 함수
 def generate_problem():
