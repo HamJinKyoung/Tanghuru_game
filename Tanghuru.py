@@ -236,6 +236,11 @@ def initialize_game():
     score_label.place(relx=0.5, rely=0.25, anchor="center")
     lives_label.place(relx=0.5, rely=0.3, anchor="center")
     
+    # 현재 탕후루 리셋
+    current_ingredients.clear()
+    for widget in current_tanghuru.winfo_children():
+        widget.destroy()
+    
     game_running = True  # 게임 실행 상태 복구
     goal_ingredients = generate_problem()  # 목표 재료 생성
     
